@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container mt-3">
-        <h1>My Notes</h1>
+        <h1>Notes Shared with you</h1>
         <a href="{{ route('note.create') }}" class="btn btn-primary my-3 mx-auto">Add a new Note</a>
 
         <div class="row mt-4">
@@ -14,15 +14,6 @@
 
                         <a href="{{ route('note.edit', $note) }}" class="btn btn-warning mt-2"><i
                                 class="fas fa-pen"></i></a>
-                        <form action="{{ route('note.destroy', $note) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger mt-2"><i class="fas fa-trash"></i></button>
-                        </form>
-
-                        <a href="{{ route('share.create', $note) }}" class="btn btn-success mt-2"><i
-                                class="fas fa-share"></i></a>
-
 
                     </div>
                     <div class="card-body">

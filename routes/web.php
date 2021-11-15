@@ -23,6 +23,9 @@ require __DIR__ . '/auth.php';
 Route::resource('note', App\Http\Controllers\NoteController::class);
 Route::get('mynotes', 'App\Http\Controllers\NoteController@mynotes')->name('mynotes');
 Route::get('liked', 'App\Http\Controllers\NoteController@liked')->name('liked');
+Route::get('share/create/{note}', 'App\Http\Controllers\NoteController@sharecreate')->name('share.create');
+Route::post('share/store/{note}', 'App\Http\Controllers\NoteController@share')->name('share.store');
+Route::get('shared', 'App\Http\Controllers\NoteController@shared')->name('shared');
 Route::get('like/{note}', 'App\Http\Controllers\NoteController@like')->name('like');
 Route::resource('tag', App\Http\Controllers\TagController::class);
 

@@ -21,4 +21,9 @@ class Note extends Model
     public function tags(){
         return $this->belongsToMany('App\Models\Tag', 'tag_note', 'note_id', 'tag_id');
     }
+
+    public function shared(){
+        return $this->belongsToMany('App\Models\Note', 'recipient_author_note', 'note_id', 'recipient_id');
+    }
+
 }

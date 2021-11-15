@@ -18,6 +18,7 @@ class CreateNotesTable extends Migration
             $table->text('text');
             $table->unSignedBigInteger('author_id');
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('likes_count')->default(0);
             $table->timestamps();
         });
 

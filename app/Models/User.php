@@ -51,6 +51,10 @@ class User extends Authenticatable
     }
 
     public function likes(){
-        return $this->hasMany('App\Models\Note', 'note_user', 'user_id', 'note_id');
+        return $this->belongsToMany('App\Models\Note', 'note_user', 'user_id', 'note_id');
     }
+
+        public function shared(){
+            return $this->belongsToMany('App\Models\Note', 'recipient_author_note', 'recipient_id', 'note_id');
+        }
 }

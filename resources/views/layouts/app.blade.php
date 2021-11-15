@@ -21,7 +21,7 @@
 <body class="font-sans antialiased">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{route('welcome')}}">StackeditOfThePoor</a>
+            <a class="navbar-brand" href="{{ route('welcome') }}">StackeditOfThePoor</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -33,15 +33,15 @@
                         <a class="nav-link active" aria-current="page" href="/">All Notes</a>
                     </li>
                     @auth
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('mynotes')}}">My Notes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Shared Notes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('liked')}}">Liked Notes</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('mynotes') }}">My Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('shared') }}">Shared Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('liked') }}">Liked Notes</a>
+                        </li>
                     @endauth
 
                 </ul>
@@ -60,7 +60,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Profil</a></li>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                                            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -78,8 +78,11 @@
         </div>
     </nav>
 
-
+    @if (Session::has('slot'))
+        {{ $slot }}
+    @endif
     @yield('content')
+    @yield('scriptjs')
 </body>
 
 </html>

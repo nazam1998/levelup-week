@@ -13,6 +13,11 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('tags')->insert([
+            ['name' => "Laravel"],
+            ['name' => "VueJS"],
+            ['name' => "AWS"],
+            ['name' => "Flutter"],
+        ]);
     }
 }

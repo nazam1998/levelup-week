@@ -1,20 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Note;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('mobile')->only('index');
+    }
+
     public function index()
     {
-        $notes = Note::get();
+        $tags = Tag::all();
+        $notes = Note::orderByDesc('likes_count')->get();
 
-        $notes->sortByDesc(function ($notes) {
-            return $notes->likes->sum('user_id');
-        });
-
-        return view('welcome', compact('notes'));
-
+        return view('welcome', compact('notes', 'tags'));
     }
 }
