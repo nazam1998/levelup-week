@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +12,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'App\Http\Controllers\WelcomeController@index')->name('welcome');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';
+
+Route::resource('note', App\Http\Controllers\NoteController::class);
+Route::get('mynotes', 'App\Http\Controllers\NoteController@mynotes')->name('mynotes');
+Route::get('liked', 'App\Http\Controllers\NoteController@liked')->name('liked');
+Route::get('like/{note}', 'App\Http\Controllers\NoteController@like')->name('like');
+Route::resource('tag', App\Http\Controllers\TagController::class);
+
+
+//
