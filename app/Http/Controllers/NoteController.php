@@ -24,9 +24,9 @@ class NoteController extends Controller
      */
     public function index()
     {
-        $notes = Note::all();
+        
 
-        return view('notes.index', compact('notes'));
+        return redirect()->route('welcome');
     }
 
     /**

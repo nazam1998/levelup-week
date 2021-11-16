@@ -9,7 +9,7 @@ class Tag extends Model
 {
     use HasFactory;
 
-    public function tags(){
+    public function notes(){
         return $this->belongsToMany('App\Models\Note', 'tag_note', 'tag_id', 'note_id');
     }
 }

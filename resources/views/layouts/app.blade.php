@@ -19,7 +19,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('welcome') }}">StackeditOfThePoor</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -50,6 +50,9 @@
                         <li class="nav-item ms-auto">
                             <a class="nav-link" href="{{ route('login') }}">Login</a>
                         </li>
+                        <li class="nav-item ms-auto">
+                            <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
+                        </li>
                     @endguest
                     @auth
                         <li class="nav-item ms-auto dropdown">
@@ -58,7 +61,7 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Profil</a></li>
+                                <li><a class="dropdown-item" href="{{route('profil')}}">Profil</a></li>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}

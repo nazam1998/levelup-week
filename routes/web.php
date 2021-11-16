@@ -27,7 +27,8 @@ Route::get('share/create/{note}', 'App\Http\Controllers\NoteController@sharecrea
 Route::post('share/store/{note}', 'App\Http\Controllers\NoteController@share')->name('share.store');
 Route::get('shared', 'App\Http\Controllers\NoteController@shared')->name('shared');
 Route::get('like/{note}', 'App\Http\Controllers\NoteController@like')->name('like');
+Route::post('filterbyTag', 'App\Http\Controllers\TagController@filter')->name('filter');
 Route::resource('tag', App\Http\Controllers\TagController::class);
-
+Route::get('profil', 'App\Http\Controllers\UserController@index')->name('profil');
 
 //

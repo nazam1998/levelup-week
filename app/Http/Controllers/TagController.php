@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class TagController extends Controller
 {
@@ -54,7 +55,28 @@ class TagController extends Controller
 
     public function show(Tag $tag)
     {
+
         return redirect()->route('welcome');
+    }
+
+    public function filter(Request $request){
+        if(!$request->tags == null){
+            $tags = Tag::where('name', $request->tags)->get();
+            $notes = $tags->pluck('notes');
+            $related = $notes->first();
+            if ($notes->first()) {
+
+                foreach ($notes as $note) {
+                    $related = $related->merge($note);
+                }
+
+                $notes = $related;
+            }
+        }else{
+            return redirect()->route('welcome');
+        }
+        $tags = Tag::all();
+        return  view('welcome', compact('tags', 'notes'));
     }
 
     /**
@@ -80,6 +102,7 @@ class TagController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:50|unique:tags,name,' . $tag->id,
         ]);
+
         $tag->name = $request->name;
         $tag->save();
 

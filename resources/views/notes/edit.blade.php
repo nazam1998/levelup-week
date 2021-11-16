@@ -15,7 +15,7 @@
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
                 <label for="text" class="form-label">Write your note</label>
-                <textarea class="form-control" name="text" id="text"
+                <textarea class="form-control" name="text" id="editor"
                     aria-describedby="text-note">{{ $note->text }}</textarea>
             </div>
             <div class="row my-4">
@@ -42,4 +42,17 @@
             <button type="submit" class="btn btn-success">Save</button>
         </form>
     </div>
+@endsection
+
+
+@section('scriptjs')
+<script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
 @endsection
